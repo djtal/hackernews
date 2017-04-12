@@ -36,17 +36,11 @@ const Search = ({ value, onChange, children }) => (
   </form>
 );
 
-class Button extends Component {
-  render() {
-    const { onClick, className = "", children } = this.props;
-
-    return (
-      <button onClick={onClick} type="button" className={className}>
-        {children}
-      </button>
-    );
-  }
-}
+const Button = ({ onClick, className = "", children }) => (
+  <button onClick={onClick} type="button" className={className}>
+    {children}
+  </button>
+);
 
 const Table = ({ list, pattern, onDismiss }) => (
   <div>
