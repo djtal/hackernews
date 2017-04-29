@@ -11,17 +11,6 @@ const PARAM_SEARCH = "query=";
 const PARAM_PAGE = "page=";
 const PARAM_HPP = "hitsPerPage=";
 
-function isSearched(searchTerm) {
-  return function(item) {
-    return (
-      !searchTerm || item.title.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-  };
-}
-// const isSearched = searchTerm =>
-//   item =>
-//     !searchTerm || item.title.toLowerCase().includes(searchTerm.toLowerCase);
-
 const Search = ({ value, onChange, onSubmit, children }) => (
   <form onSubmit={onSubmit}>
     <button type="submit">
@@ -38,7 +27,7 @@ const Button = ({ onClick, className = "", children }) => (
 
 const Table = ({ list, pattern, onDismiss }) => (
   <div className="table">
-    {list.filter(isSearched(pattern)).map(item => (
+    {list.map(item => (
       <div key={item.objectID} className="table-row">
         <span style={{ width: "40%" }}>
           <a href={item.url}>
