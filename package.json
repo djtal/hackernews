@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "classnames": "^2.2.5",
     "eslint": "^3.19.0",
+    "lodash": "^4.17.4",
     "prop-types": "^15.5.8",
     "react": "^15.5.3",
     "react-dom": "^15.5.3",
