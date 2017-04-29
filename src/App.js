@@ -14,6 +14,9 @@ const PARAM_HPP = "hitsPerPage=";
 
 const Loading = () => <div>Loading...</div>;
 
+const withLoading = Component => ({ isLoading, ...rest }) =>
+  (isLoading ? <Loading /> : <Component {...rest} />);
+
 const Search = ({ value, onChange, onSubmit, children }) => (
   <form onSubmit={onSubmit}>
     <button type="submit">
@@ -40,7 +43,16 @@ Button.defaultProps = {
 };
 
 Button.PropTypes = {
-  onClick: PropTypes.func.isRquired,
+  onClick: PropTypes.func.isRequired,
+  className: PropTypes.string,
+  children: PropTypes.node.isRequired
+};
+
+const ButtonWithLoading = withLoading(Button);
+
+Button.PropTypes = {
+  isLoading: PropTypes.bool.isRequired,
+  onClick: PropTypes.func.isRequired,
   className: PropTypes.string,
   children: PropTypes.node.isRequired
 };
@@ -117,9 +129,9 @@ class App extends Component {
     this.setState({
       results: {
         ...results,
-        [searchKey]: { hits: updatedHits, page },
-        isLoading: false
-      }
+        [searchKey]: { hits: updatedHits, page }
+      },
+      isLoading: false
     });
   }
 
@@ -157,13 +169,12 @@ class App extends Component {
         </div>
         <Table list={list} pattern={searchTerm} onDismiss={this.onDismiss} />
         <div className="interactions">
-          {isLoading
-            ? <Loading />
-            : <Button
-                onClick={() => this.fetchSearchTopstorie(searchKey, page + 1)}
-              >
-                More
-              </Button>}
+          <ButtonWithLoading
+            isLoading={isLoading}
+            onClick={() => this.fetchSearchTopstorie(searchKey, page + 1)}
+          >
+            More
+          </ButtonWithLoading>
         </div>
       </div>
     );
