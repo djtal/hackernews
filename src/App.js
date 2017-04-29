@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import "./App.css";
 
 const DEFAULT_QUERY = "redux";
@@ -19,11 +20,28 @@ const Search = ({ value, onChange, onSubmit, children }) => (
   </form>
 );
 
-const Button = ({ onClick, className = "", children }) => (
+Search.PropTypes = {
+  value: PropTypes.string,
+  onChange: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  childred: PropTypes.node
+};
+
+const Button = ({ onClick, className, children }) => (
   <button onClick={onClick} type="button" className={className}>
     {children}
   </button>
 );
+
+Button.defaultProps = {
+  className: ""
+};
+
+Button.PropTypes = {
+  onClick: PropTypes.func.isRquired,
+  className: PropTypes.string,
+  children: PropTypes.node.isRequired
+};
 
 const Table = ({ list, pattern, onDismiss }) => (
   <div className="table">
@@ -49,6 +67,19 @@ const Table = ({ list, pattern, onDismiss }) => (
     ))}
   </div>
 );
+
+Table.PropTypes = {
+  list: PropTypes.arrayOf(
+    PropTypes.shape({
+      objectID: PropTypes.string.isRequired,
+      author: PropTypes.string,
+      url: PropTypes.string,
+      num_comments: PropTypes.number,
+      points: PropTypes.number
+    })
+  ),
+  onDismiss: PropTypes.func.isRequired
+};
 
 class App extends Component {
   constructor(props) {
