@@ -17,4 +17,18 @@ Button.PropTypes = {
   children: PropTypes.node.isRequired
 };
 
-export { Button };
+const Loading = () => <div>Loading...</div>;
+
+const withLoading = Component => ({ isLoading, ...rest }) =>
+  (isLoading ? <Loading /> : <Component {...rest} />);
+
+const ButtonWithLoading = withLoading(Button);
+
+ButtonWithLoading.PropTypes = {
+  isLoading: PropTypes.bool.isRequired,
+  onClick: PropTypes.func.isRequired,
+  className: PropTypes.string,
+  children: PropTypes.node.isRequired
+};
+
+export { Button, ButtonWithLoading };

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import "./App.css";
 
-import { Button } from "../Button";
+import { Button, ButtonWithLoading } from "../Button";
 import { Table } from "../Table";
 import { Search } from "../Search";
 
@@ -16,20 +16,6 @@ import {
   PARAM_PAGE,
   PARAM_HPP
 } from "../../constants";
-
-const Loading = () => <div>Loading...</div>;
-
-const withLoading = Component => ({ isLoading, ...rest }) =>
-  (isLoading ? <Loading /> : <Component {...rest} />);
-
-const ButtonWithLoading = withLoading(Button);
-
-ButtonWithLoading.PropTypes = {
-  isLoading: PropTypes.bool.isRequired,
-  onClick: PropTypes.func.isRequired,
-  className: PropTypes.string,
-  children: PropTypes.node.isRequired
-};
 
 const updateSearchTopStories = (hits, page) => prevState => {
   const { searchKey, results } = prevState;
