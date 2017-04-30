@@ -4,6 +4,8 @@ import { sortBy } from "lodash";
 import classNames from "classnames";
 import "./App.css";
 
+import { Button } from "../Button";
+
 import {
   DEFAULT_QUERY,
   DEFAULT_PAGE,
@@ -43,25 +45,9 @@ Search.PropTypes = {
   childred: PropTypes.node
 };
 
-const Button = ({ onClick, className, children }) => (
-  <button onClick={onClick} type="button" className={className}>
-    {children}
-  </button>
-);
-
-Button.defaultProps = {
-  className: ""
-};
-
-Button.PropTypes = {
-  onClick: PropTypes.func.isRequired,
-  className: PropTypes.string,
-  children: PropTypes.node.isRequired
-};
-
 const ButtonWithLoading = withLoading(Button);
 
-Button.PropTypes = {
+ButtonWithLoading.PropTypes = {
   isLoading: PropTypes.bool.isRequired,
   onClick: PropTypes.func.isRequired,
   className: PropTypes.string,
