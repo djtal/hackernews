@@ -4,6 +4,7 @@ import "./App.css";
 
 import { Button } from "../Button";
 import { Table } from "../Table";
+import { Search } from "../Search";
 
 import {
   DEFAULT_QUERY,
@@ -20,21 +21,6 @@ const Loading = () => <div>Loading...</div>;
 
 const withLoading = Component => ({ isLoading, ...rest }) =>
   (isLoading ? <Loading /> : <Component {...rest} />);
-
-const Search = ({ value, onChange, onSubmit, children }) => (
-  <form onSubmit={onSubmit}>
-    <button type="submit">
-      {children} <input type="text" onChange={onChange} value={value} />
-    </button>
-  </form>
-);
-
-Search.PropTypes = {
-  value: PropTypes.string,
-  onChange: PropTypes.func.isRequired,
-  onSubmit: PropTypes.func.isRequired,
-  childred: PropTypes.node
-};
 
 const ButtonWithLoading = withLoading(Button);
 
