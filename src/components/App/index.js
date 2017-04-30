@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { sortBy } from "lodash";
-import classNames from "classnames";
 import "./App.css";
 
 import { Button } from "../Button";
+import { Sort } from "../Sort";
 
 import {
   DEFAULT_QUERY,
@@ -52,23 +52,6 @@ ButtonWithLoading.PropTypes = {
   onClick: PropTypes.func.isRequired,
   className: PropTypes.string,
   children: PropTypes.node.isRequired
-};
-
-const Sort = ({ sortKey, onSort, activeSortKey, children }) => {
-  const sortClass = classNames("button-inline", {
-    "button-active": sortKey === activeSortKey
-  });
-  return (
-    <Button onClick={() => onSort(sortKey)} className={sortClass}>
-      {children}
-    </Button>
-  );
-};
-
-Sort.PropTypes = {
-  sortKey: PropTypes.string.isRequired,
-  onSort: PropTypes.func.isRequired,
-  children: PropTypes.node
 };
 
 const updateSearchTopStories = (hits, page) => prevState => {
